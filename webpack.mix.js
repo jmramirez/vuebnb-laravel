@@ -12,6 +12,14 @@ const mix = require('laravel-mix');
  |
  */
 
+mix.webpackConfig({
+    resolve: {
+        alias: {
+            'vue$': 'vue/dist/vue.runtime.esm.js'
+        }
+    }
+})
+
 mix.js('resources/js/app.js', 'public/js')
     .styles('resources/css/style.css', 'public/css/style.css')
     .copy('resources/images', 'public/images')
