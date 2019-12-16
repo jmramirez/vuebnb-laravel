@@ -8,6 +8,7 @@
     <script src="https://kit.fontawesome.com/1ab2a93823.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/vue-style.css') }}" type="text/css">
     <script type="text/javascript">
         window.vuebnb_listing_model = "{!! addslashes(json_encode($model)) !!}"
     </script>
@@ -18,11 +19,7 @@
     <h1>vuebnb</h1>
 </div>
 <div id="app">
-    <div class="header">
-        <div class="header-img" v-bind:style="headerImageStyle" v-on:click="modalOpen = true">
-            <button class="view-photos">View Photos</button>
-        </div>
-    </div>
+    <header-image :image-url="images[0]" @header-clicked="openModal"></header-image>
     <div class="container">
         <div class="heading">
             <h1>@{{ title }}</h1>
@@ -58,12 +55,9 @@
             </div>
         </div>
     </div>
-    <div id="modal" v-bind:class="{ show : modalOpen }">
-        <button v-on:click="modalOpen = false" class="modal-close">&times;</button>
-        <div class="modal-content">
-            <image-carousel :images="images"></image-carousel>
-        </div>
-    </div>
+    <modal-window ref="imagemodal">
+        <image-carousel :images="images"></image-carousel>
+    </modal-window>
 </div>
 <script src="{{ asset('js/app.js') }}"></script>
 </body>

@@ -19,3 +19,7 @@ mix.js('resources/js/app.js', 'public/js')
         proxy: 'http://localhost:8000',
         open: false
     })
+
+mix.options({
+    extractVueStyles: 'public/css/vue-style.css'
+})
