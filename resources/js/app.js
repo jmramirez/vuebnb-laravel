@@ -6,6 +6,8 @@ model = populateAmenitiesAndPrices(model);
 import ImageCarousel from "./components/ImageCarousel";
 import ModalWindow from "./components/ModalWindow";
 import HeaderImage from "./components/HeaderImage";
+import FeatureList from "./components/FeatureList";
+import ExpandableText from "./components/ExpandableText";
 
 let app = new Vue({
   el: '#app',
@@ -19,7 +21,9 @@ let app = new Vue({
   components:{
       ImageCarousel,
       ModalWindow,
-      HeaderImage
+      HeaderImage,
+      FeatureList,
+      ExpandableText
   },
   methods: {
       openModal() {
