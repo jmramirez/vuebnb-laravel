@@ -1,11 +1,7 @@
 <template>
     <div class="home-container">
-        <div v-for="(group, country) in listing_groups">
-            <h1>Places in {{ country }}</h1>
-            <div class="listing-summaries">
-                <listing-summary v-for="listing in group" :key="listing.id" :listing="listing" class="listing-summary-group"></listing-summary>
-            </div>
-        </div>
+        <listing-summary-group v-for="(group, country) in listing_groups" :key="country" :listings="group" :country="country" class="listing-summary-group"></listing-summary-group>
+
     </div>
 </template>
 <script>
@@ -13,13 +9,14 @@
     import ListingSummary from "./ListingSummary";
     import axios from 'axios'
     import routeMixin from '../route-mixin'
+    import ListingSummaryGroup from "./ListingSummaryGroup";
 
     let serverData = JSON.parse(window.vuebnb_server_data);
     let listing_groups = groupByCountry(serverData.listings);
 
     export default {
         mixins: [routeMixin],
-        components: {ListingSummary},
+        components: {ListingSummaryGroup, ListingSummary},
         data() {
             return { listing_groups: []}
         },
@@ -27,9 +24,6 @@
           assignData({ listings }){
               this.listing_groups = groupByCountry(listings)
           },
-        },
-        components: {
-            ListingSummary
         },
         beforeRouteEnter(to, from, next) {
             let serverData = JSON.parse(window.vuebnb_server_data);
@@ -46,25 +40,4 @@
     }
 
 </script>
-<style>
 
-
-    .listing-summary-group {
-        padding-bottom: 20px;
-    }
-
-    .listing-summaries {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        overflow: hidden;
-    }
-
-    .listing-summaries > .listing-summary {
-        margin-right: 15px;
-    }
-
-    .listing-summaries > .listing-summary:last-child {
-        margin-right: 0;
-    }
-</style>
