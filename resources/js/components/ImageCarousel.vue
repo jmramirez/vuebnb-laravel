@@ -1,8 +1,8 @@
 <template>
     <div class="image-carousel">
-        <img v-bind:src="image">
+        <img v-bind:src="image" v-on:keyup.left="changeImage">
         <div class="controls">
-            <carousel-control dir="left" @change-image="changeImage"></carousel-control>
+            <carousel-control dir="left" @change-image="changeImage" ></carousel-control>
             <carousel-control dir="right" @change-image="changeImage"></carousel-control>
         </div>
     </div>
