@@ -7,6 +7,7 @@
             </router-link>
             <ul class="links">
                 <li><router-link :to="{ name: 'saved' }">Saved</router-link></li>
+                <li><router-link :to="{ name: 'login' }">Log in</router-link></li>
             </ul>
         </div>
         <router-view></router-view>
